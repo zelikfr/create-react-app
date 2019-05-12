@@ -38,6 +38,9 @@ const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
 const postcssNormalize = require('postcss-normalize');
 
+// Get the app's `package.json`.
+const appPackageJson = require(paths.appPackageJson);
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -319,9 +322,13 @@ module.exports = function(webpackEnv) {
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
                 // @remove-on-eject-begin
-                baseConfig: {
-                  extends: [require.resolve('eslint-config-react-app')],
-                },
+                baseConfig:
+                  // We allow overriding the config, only if it extends our config
+                  // (`extends` can be a string or array of strings).
+                  appPackageJson.eslintConfig &&
+                  appPackageJson.eslintConfig.extends.includes('react-app')
+                    ? appPackageJson.eslintConfig
+                    : { extends: [require.resolve('eslint-config-react-app')] },
                 ignore: false,
                 useEslintrc: false,
                 // @remove-on-eject-end
