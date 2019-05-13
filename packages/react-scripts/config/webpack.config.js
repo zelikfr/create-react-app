@@ -326,6 +326,7 @@ module.exports = function(webpackEnv) {
                   // We allow overriding the config, only if it extends our config
                   // (`extends` can be a string or array of strings).
                   appPackageJson.eslintConfig &&
+                  appPackageJson.eslintConfig.extends &&
                   appPackageJson.eslintConfig.extends.includes('react-app')
                     ? appPackageJson.eslintConfig
                     : { extends: [require.resolve('eslint-config-react-app')] },
