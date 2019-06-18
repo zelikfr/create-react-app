@@ -1,3 +1,3 @@
 export default {
-    apiUrl: 'http://my-api.com',
+    apiUrl: 'https://reqres.in/api',
 }
