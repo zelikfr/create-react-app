@@ -4,14 +4,14 @@ import withAPI from '../../hocs/withAPI'
 import Button from 'components/Button'
 
 class Home extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       loading: true,
       users: [],
     }
   }
-  componentDidMount() {
+  componentDidMount () {
     this.props.call(
       {
         method: 'get',
@@ -19,10 +19,10 @@ class Home extends Component {
       },
       res => {
         this.setState({ users: res.data, loading: false })
-      },
+      }
     )
   }
-  render() {
+  render () {
     const { loading, users } = this.state
     return (
       <div>

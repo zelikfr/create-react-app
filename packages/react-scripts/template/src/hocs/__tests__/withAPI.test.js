@@ -2,7 +2,6 @@ import React from 'react'
 import { mount } from 'enzyme'
 import withAPI from '../withAPI.js'
 import axios from 'axios'
-import config from 'config'
 
 const Component = () => (
   <div></div>
@@ -20,7 +19,7 @@ describe('withAPI', () => {
     // When I render the withAPI element
     const HocComponent = withAPI(Component)
     const component = mount(<HocComponent />, { selector: 'WithAPI' })
-    const spyCancel = spyOn(component.instance().request, 'cancel')
+    const spyCancel = jest.spyOn(component.instance().request, 'cancel')
     component.unmount()
     // Then I should have the component to match the snapshot.
     expect(spyCancel).toHaveBeenCalled()
@@ -32,7 +31,7 @@ describe('withAPI', () => {
     const succ = jest.fn()
     const err = jest.fn()
     const promise = Promise.resolve({ data: 'myData' })
-    const spyCreate = spyOn(axios, 'request').and.callFake(() => promise)
+    const spyCreate = jest.spyOn(axios, 'request').and.callFake(() => promise)
     component.instance().call({ method: 'GET', url: 'api/endpoint' }, succ, err)
     // Then spyCreate is called and success callback is called too
     expect(spyCreate).toHaveBeenCalled()
@@ -49,8 +48,8 @@ describe('withAPI', () => {
     const err = jest.fn()
     const rejectValue = { error: 'error' }
     const promise = Promise.reject(rejectValue)
-    const handleError = spyOn(component.instance(), 'handleError')
-    const spyCreate = spyOn(axios, 'request').and.callFake(() => promise)
+    const handleError = jest.spyOn(component.instance(), 'handleError')
+    const spyCreate = jest.spyOn(axios, 'request').and.callFake(() => promise)
     component.instance().call({ method: 'GET', url: 'api/endpoint' }, succ, err)
     expect(spyCreate).toHaveBeenCalled()
     // Then spyCreate is called and error callback is called too
@@ -66,7 +65,7 @@ describe('withAPI', () => {
     const succ = jest.fn()
     const err = jest.fn()
     const promise = Promise.resolve({ data: 'myData' })
-    const spyCreate = spyOn(axios, 'all').and.callFake(() => promise)
+    const spyCreate = jest.spyOn(axios, 'all').and.callFake(() => promise)
     component.instance().multipleCalls([{ method: 'GET', url: 'api/endpoint' }, { method: 'GET', url: 'api/endpoint2' }], succ, err)
     // Then spyCreate is called and success callback is called too
     expect(spyCreate).toHaveBeenCalled()
@@ -83,8 +82,8 @@ describe('withAPI', () => {
     const err = jest.fn()
     const rejectValue = { error: 'error' }
     const promise = Promise.reject(rejectValue)
-    const handleError = spyOn(component.instance(), 'handleError')
-    const spyCreate = spyOn(axios, 'all').and.callFake(() => promise)
+    const handleError = jest.spyOn(component.instance(), 'handleError')
+    const spyCreate = jest.spyOn(axios, 'all').and.callFake(() => promise)
     component.instance().multipleCalls([{ method: 'GET', url: 'api/endpoint' }, { method: 'GET', url: 'api/endpoint2' }], succ, err)
     // Then spyCreate is called and error callback is called too
     expect(spyCreate).toHaveBeenCalled()
@@ -100,8 +99,8 @@ describe('withAPI', () => {
     const succ = jest.fn()
     const rejectValue = { error: 'invalid_token' }
     const promise = Promise.reject(rejectValue)
-    const handleError = spyOn(component.instance(), 'handleError').and.callThrough()
-    const spyCreate = spyOn(axios, 'request').and.callFake(() => promise)
+    const handleError = jest.spyOn(component.instance(), 'handleError').and.callThrough()
+    const spyCreate = jest.spyOn(axios, 'request').and.callFake(() => promise)
     component.instance().call({ method: 'GET', url: 'api/endpoint' }, succ)
     // Then spyCreate is called and error callback is called too
     expect(spyCreate).toHaveBeenCalled()
@@ -117,7 +116,7 @@ describe('withAPI', () => {
   //     const component = mount(<HocComponent />, { selector: 'WithAPI' })
   //     const resError = { response: { data: { error: 'invalid_token' } } }
   //     const promise = Promise.reject(resError)
-  //     spyOn(axios, 'request').and.callFake(() => promise)
+  //     jest.spyOn(axios, 'request').and.callFake(() => promise)
   //     const err = jest.fn()
   //     const prevQuery = { query: { method: 'GET', url: 'api/endpoint' }, type: 'call' }
   //     component.setProps({ history: { replace } })
@@ -136,7 +135,7 @@ describe('withAPI', () => {
   //     const resError = { response: { data: { error: 'invalid_token' } } }
   //     const rejectValue = { response: { data: {} } }
   //     const promise = Promise.reject(rejectValue)
-  //     spyOn(axios, 'request').and.callFake(() => promise)
+  //     jest.spyOn(axios, 'request').and.callFake(() => promise)
   //     const err = jest.fn()
   //     const prevQuery = { query: { method: 'GET', url: 'api/endpoint' }, type: 'call' }
   //     component.setProps({ history: { replace } })
@@ -155,9 +154,9 @@ describe('withAPI', () => {
   //     const resError = { response: { data: { error: 'invalid_token' } } }
   //     const resSucc = { data: { access_token: 'myToken' } }
   //     const promise = Promise.resolve(resSucc)
-  //     spyOn(axios, 'request').and.callFake(() => promise)
+  //     jest.spyOn(axios, 'request').and.callFake(() => promise)
   //     const err = jest.fn()
-  //     const spyCall = spyOn(component.instance(), 'call')
+  //     const spyCall = jest.spyOn(component.instance(), 'call')
   //     const prevQuery = { query: { method: 'GET', url: 'api/endpoint' }, type: 'call' }
   //     component.setProps({ login })
   //     component.instance().handleError(resError, err, prevQuery)
@@ -176,9 +175,9 @@ describe('withAPI', () => {
     const resError = { response: { data: { error: 'invalid_token' } } }
     const resSucc = { data: {} }
     const promise = Promise.resolve(resSucc)
-    spyOn(axios, 'request').and.callFake(() => promise)
+    jest.spyOn(axios, 'request').and.callFake(() => promise)
     const err = jest.fn()
-    const spyCall = spyOn(component.instance(), 'call')
+    const spyCall = jest.spyOn(component.instance(), 'call')
     const prevQuery = { query: { method: 'GET', url: 'api/endpoint' }, type: 'call' }
     component.setProps({ login })
     component.instance().handleError(resError, err, prevQuery)
@@ -197,9 +196,9 @@ describe('withAPI', () => {
   //     const resError = { response: { data: { error: 'invalid_token' } } }
   //     const resSucc = { data: { access_token: 'myToken' } }
   //     const promise = Promise.resolve(resSucc)
-  //     spyOn(axios, 'request').and.callFake(() => promise)
+  //     jest.spyOn(axios, 'request').and.callFake(() => promise)
   //     const err = jest.fn()
-  //     const spyMultiple = spyOn(component.instance(), 'multipleCalls')
+  //     const spyMultiple = jest.spyOn(component.instance(), 'multipleCalls')
   //     const prevQuery = { queries: [{ method: 'GET', url: 'api/endpoint' }], type: 'multipleCalls' }
   //     component.setProps({ login })
   //     component.instance().handleError(resError, err, prevQuery)
