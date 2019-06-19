@@ -1,6 +1,6 @@
 {
-  "name": "eslint-config-react-app",
-  "version": "4.0.1",
+  "name": "zelik-eslint-config-react-app",
+  "version": "1.0.0",
   "description": "ESLint configuration used by Create React App",
   "repository": {
     "type": "git",
