@@ -58,7 +58,7 @@ class AuthProviderComponent extends Component {
   componentWillUnmount () {
     this._isMounted = false
   }
-  setAuthenticated(isAuthenticated) {
+  setAuthenticated (isAuthenticated) {
     this.setState({ isAuthenticated })
   }
   render () {

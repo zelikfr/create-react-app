@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import withAPI from '../../hocs/withAPI'
+import withAPI from 'hocs/withAPI'
 import Button from 'components/Button'
 
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
                 data: {
                     username: 'hello',
                     password: 'ad',
-                }
+                },
             },
             res => {
                 this.props.setAuthenticated(true)
