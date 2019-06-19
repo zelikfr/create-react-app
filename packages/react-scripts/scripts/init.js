@@ -97,7 +97,7 @@ module.exports = function(
   appPackage.scripts = {
     start: 'react-scripts start',
     build: 'react-scripts build',
-    test: 'react-scripts test',
+    test: 'react-scripts test --modulePaths=src',
     eject: 'react-scripts eject',
   };
 
@@ -105,7 +105,25 @@ module.exports = function(
   appPackage.eslintConfig = {
     extends: 'react-app',
   };
-
+  appPackage.jest = {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!<rootDir>/src/index.js",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/config/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import config from 'config'
-import { withRouter } from 'react-router-dom'
 
 const withAPI = ComposedComponent => {
     class WithAPI extends Component {
@@ -57,7 +56,7 @@ const withAPI = ComposedComponent => {
             return <ComposedComponent {...this.props} call={this.call} multipleCalls={this.multipleCalls} />
         }
     }
-    return withRouter(WithAPI)
+    return WithAPI
 }
 
 export default withAPI

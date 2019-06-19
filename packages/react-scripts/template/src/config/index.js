@@ -1,3 +1,3 @@
 export default {
-    apiUrl: 'https://reqres.in/api',
+    apiUrl: process.env.REACT_APP_API_URL,
 }
