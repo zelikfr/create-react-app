@@ -1,6 +1,6 @@
 {
   "name": "zelik-react-scripts",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "description": "ZELIK Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
     "eslint": "^5.16.0",
-    "zelik-eslint-config-react-app": "^1.0.0",
+    "eslint-config-zelik-react-app": "^1.0.0",
     "eslint-loader": "2.1.2",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-import": "2.16.0",

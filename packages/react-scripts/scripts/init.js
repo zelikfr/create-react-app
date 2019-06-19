@@ -103,7 +103,7 @@ module.exports = function(
 
   // Setup the eslint config
   appPackage.eslintConfig = {
-    extends: 'react-app',
+    extends: 'zelik-react-app',
   };
   appPackage.jest = {
     "snapshotSerializers": [
