@@ -30,7 +30,7 @@ class Home extends Component {
                 {!loading && <div>
                     <ul>
                         {users.map(user => (
-                            <li>{user.first_name}</li>    
+                            <li key={user.id}>{user.first_name}</li>    
                         ))}
                     </ul>
                 </div>}

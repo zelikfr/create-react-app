@@ -156,6 +156,7 @@ module.exports = function(
 
   let command;
   let args;
+  let dependencies;
 
   if (useYarn) {
     command = 'yarnpkg';
@@ -164,6 +165,7 @@ module.exports = function(
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
+  dependencies = [...args]
   args.push('react', 'react-dom');
 
   // Install additional template dependencies, if present
@@ -173,11 +175,19 @@ module.exports = function(
   );
   if (fs.existsSync(templateDependenciesPath)) {
     const templateDependencies = require(templateDependenciesPath).dependencies;
-    args = args.concat(
+    dependencies = dependencies.concat(
       Object.keys(templateDependencies).map(key => {
         return `${key}@${templateDependencies[key]}`;
       })
     );
+
+    console.log(`Installing additionnal dependencies using ${command}...`);
+    const proc = spawn.sync(command, dependencies, { stdio: 'inherit' });
+    if (proc.status !== 0) {
+      console.error(`\`${command} ${dependencies.join(' ')}\` failed`);
+      return;
+    }
+    
     fs.unlinkSync(templateDependenciesPath);
   }
 
