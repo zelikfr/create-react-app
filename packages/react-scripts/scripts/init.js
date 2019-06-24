@@ -105,6 +105,12 @@ module.exports = function(
   appPackage.eslintConfig = {
     extends: 'zelik-react-app',
   };
+  appPackage.husky = {
+    "hooks": {
+      "pre-commit": "lint-staged",
+        "pre-push": "npm run test:coverage"
+    }
+  },
   appPackage.jest = {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
