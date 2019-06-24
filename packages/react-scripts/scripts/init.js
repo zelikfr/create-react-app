@@ -107,15 +107,14 @@ module.exports = function(
   };
   appPackage['lint-staged'] = {
     "*.js": [
-      "eslint",
-      "eslint --fix",
+      "node_modules/zelik-react-scripts/node_modules/.bin/eslint --fix",
       "git add"
     ]
   },
   appPackage.husky = {
     "hooks": {
-      "pre-commit": "lint-staged",
-        "pre-push": "npm run test:coverage"
+      "pre-commit": "./node_modules/.bin/lint-staged",
+      "pre-push": "npm run test:coverage"
     }
   },
   appPackage.jest = {
