@@ -234,7 +234,7 @@ module.exports = function(
       return;
     }
   }
-
+  spawn.sync('yarnpkg', ['add', 'husky@2.4.1', 'lint-staged@8.2.1'])
   if (useTypeScript) {
     verifyTypeScriptSetup();
   }
