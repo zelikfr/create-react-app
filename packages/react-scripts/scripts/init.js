@@ -98,6 +98,7 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --modulePaths=src',
+    "test:coverage": 'react-scripts test --coverage --modulePaths=src',
     eject: 'react-scripts eject',
   };
 
