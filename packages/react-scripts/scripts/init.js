@@ -105,6 +105,13 @@ module.exports = function(
   appPackage.eslintConfig = {
     extends: 'zelik-react-app',
   };
+  appPackage['lint-staged'] = {
+    "*.js": [
+      "eslint",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   appPackage.husky = {
     "hooks": {
       "pre-commit": "lint-staged",
