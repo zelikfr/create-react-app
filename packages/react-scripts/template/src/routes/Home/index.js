@@ -35,7 +35,7 @@ class Home extends Component {
             ))}
           </ul>
         </div>}
-        <Button onClick={() => this.props.setAuthenticated(false)}>Logout</Button>
+        <Button onClick={() => this.props.logout()}>Logout</Button>
       </div>
     )
   }
@@ -43,7 +43,7 @@ class Home extends Component {
 
 Home.propTypes = {
   call: PropTypes.func,
-  setAuthenticated: PropTypes.func,
+  logout: PropTypes.func,
 }
 
 export default withAPI(Home)

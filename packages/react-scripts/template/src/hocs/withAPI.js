@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import config from 'config'
+import { AuthContext } from 'hocs/withAuth'
 
 const withAPI = ComposedComponent => {
   class WithAPI extends Component {
@@ -19,18 +20,9 @@ const withAPI = ComposedComponent => {
       const options = {
         ...opts,
         method: opts.method,
-        url: `${config.apiUrl}/${opts.url}`,
+        url: `${opts.apiUrl || config.apiUrl}/${opts.url}`,
         cancelToken: this.request.token,
-        headers: {
-          ...(opts.headers || {}),
-        },
       }
-      // if (this.props.access_token) {
-      //     options.headers = {
-      //         ...options.headers,
-      //         Authorization: `Bearer ${this.props.access_token}`,
-      //     }
-      // }
       return options
     }
     handleError (err, error, prevQuery) {
@@ -43,19 +35,28 @@ const withAPI = ComposedComponent => {
       const customSpread = function (...args) {
         success(...[...args].map(d => d.data))
       }
-      axios.all(queriesOpts)
-        .then(axios.spread(customSpread))
-        .catch((err) => this.handleError(err, error, { type: 'multipleCalls', queries, success, error }))
+      const refreshToken = this.context.renewRefreshToken()
+      if (refreshToken) {
+        axios.all(queriesOpts)
+          .then(axios.spread(customSpread))
+          .catch((err) => this.handleError(err, error, { type: 'multipleCalls', queries, success, error }))
+      }
     }
     call (query, success, error) {
-      axios.request(this.getOptions(query))
-        .then((res) => success(res.data))
-        .catch((err) => this.handleError(err, error, { type: 'call', query, success, error }))
+      const refreshToken = this.context.renewRefreshToken()
+      if (refreshToken) {
+        axios.request(this.getOptions(query))
+          .then((res) => success(res.data))
+          .catch((err) => this.handleError(err, error, { type: 'call', query, success, error }))
+      }
     }
     render () {
       return <ComposedComponent {...this.props} call={this.call} multipleCalls={this.multipleCalls} />
     }
   }
+
+  WithAPI.contextType = AuthContext
+
   return WithAPI
 }
 

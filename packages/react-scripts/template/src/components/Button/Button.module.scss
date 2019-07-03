@@ -1,9 +1,9 @@
-@import 'styles/variables';
+@import "styles/variables.scss";
 
 .button {
-    display: inline-block;
-    padding: 10px 5px;
-    border-radius: 5px;
-    border: 1px solid $primaryColor;
-    color: $altColor;
+  display: inline-block;
+  padding: 10px 5px;
+  border-radius: 5px;
+  border: 1px solid $primaryColor;
+  color: $altColor;
 }
