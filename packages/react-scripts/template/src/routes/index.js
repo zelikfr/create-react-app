@@ -10,7 +10,7 @@ class Routes extends Component {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route exact path="/" component={withAuth({ redirectUri: '/login', accessRestriction: 'notLogged' })(Home)} />
+            <Route exact path="/" component={withAuth({ redirectUri: '/login', accessRestriction: 'logged' })(Home)} />
             <Route path="/login" component={withAuth({
               redirectUri: '/',
               accessRestriction: 'notLogged',
