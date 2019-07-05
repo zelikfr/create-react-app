@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`withAPI should create a withAPI instance with props 1`] = `
+exports[`withAPI should create a component wrapped with withAPI 1`] = `
 <WithAPI>
   <Component
     call={[Function]}

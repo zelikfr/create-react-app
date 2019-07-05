@@ -46,7 +46,6 @@ class AuthProviderComponent extends Component {
     this.loginRequest = {}
 
     this.state = {
-      isLoading: false,
       isAuthenticated: !!refreshToken,
       refreshToken,
       expirationDate,
@@ -147,12 +146,7 @@ class AuthProviderComponent extends Component {
     return false
   }
   render () {
-    const { isLoading, isAuthenticated } = this.state
-    if (isLoading) {
-      return null
-    }
-    const props = { ...this.props }
-    delete props.call
+    const { isAuthenticated } = this.state
     return (
       <AuthContext.Provider
         value={{
@@ -169,7 +163,6 @@ class AuthProviderComponent extends Component {
 }
 
 AuthProviderComponent.propTypes = {
-  call: PropTypes.func,
   children: PropTypes.any,
 }
 

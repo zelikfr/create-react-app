@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage should create a component wrapped with LoginPage 1`] = `
+<Login>
+  <div>
+    <h1>
+      Login
+    </h1>
+    <Button
+      onClick={[Function]}
+    >
+      <button
+        className="button"
+        onClick={[Function]}
+      >
+        Login to this website
+      </button>
+    </Button>
+  </div>
+</Login>
+`;

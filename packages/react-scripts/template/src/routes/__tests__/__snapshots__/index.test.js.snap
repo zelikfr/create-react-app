@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Routes should create a component wrapped with Routes 1`] = `
+<BrowserRouter>
+  <AuthProviderComponent>
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        path="/login"
+      />
+    </Switch>
+  </AuthProviderComponent>
+</BrowserRouter>
+`;

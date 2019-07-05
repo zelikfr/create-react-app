@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthProvider should create an AuthProvider wrapped component 1`] = `<AuthProviderComponent />`;
+
+exports[`AuthProvider should unmount an AuthProvider wrapped component without refreshToken 1`] = `null`;
+
+exports[`withAuth should create a component wrapped with withAuth with options 1`] = `
+<WithAuth>
+  <Component
+    login={[Function]}
+    logout={[Function]}
+    renewRefreshToken={[Function]}
+  >
+    <div />
+  </Component>
+</WithAuth>
+`;
+
+exports[`withAuth should create a component wrapped with withAuth without options 1`] = `
+<WithAuth>
+  <Component
+    login={[Function]}
+    logout={[Function]}
+    renewRefreshToken={[Function]}
+  >
+    <div />
+  </Component>
+</WithAuth>
+`;
+
+exports[`withAuth should display when not authenticated and request not authenticated 1`] = `<WithAuth />`;
+
+exports[`withAuth should redirect when authenticated and request not authenticated 1`] = `
+<WithAuth>
+  <Redirect
+    to="/"
+  >
+    redirect
+  </Redirect>
+</WithAuth>
+`;
+
+exports[`withAuth should redirect when not authenticated and request authenticated 1`] = `
+<WithAuth>
+  <Redirect
+    to="/"
+  >
+    redirect
+  </Redirect>
+</WithAuth>
+`;

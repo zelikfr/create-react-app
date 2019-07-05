@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage should create a component wrapped with HomePage 1`] = `
+<WithAPI
+  call={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "method": "get",
+            "url": "users",
+          },
+          [Function],
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+>
+  <Home
+    call={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "method": "get",
+              "url": "users",
+            },
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+  >
+    <div>
+      <h1>
+        Hello world
+      </h1>
+      <div>
+        <ul />
+      </div>
+      <Button
+        onClick={[Function]}
+      >
+        <button
+          className="button"
+          onClick={[Function]}
+        >
+          Logout
+        </button>
+      </Button>
+    </div>
+  </Home>
+</WithAPI>
+`;
+
+exports[`HomePage should create a component wrapped with HomePage and data in call 1`] = `
+<WithAPI
+  call={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "method": "get",
+            "url": "users",
+          },
+          [Function],
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+>
+  <Home
+    call={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "method": "get",
+              "url": "users",
+            },
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+  >
+    <div>
+      <h1>
+        Hello world
+      </h1>
+      <div>
+        <ul>
+          <li
+            key="1"
+          >
+            John
+          </li>
+        </ul>
+      </div>
+      <Button
+        onClick={[Function]}
+      >
+        <button
+          className="button"
+          onClick={[Function]}
+        >
+          Logout
+        </button>
+      </Button>
+    </div>
+  </Home>
+</WithAPI>
+`;
