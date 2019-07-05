@@ -126,8 +126,13 @@ module.exports = function(
       "src/**/*.js",
       "!<rootDir>/src/index.js",
       "!<rootDir>/node_modules/",
-      "!<rootDir>/src/config/**/*.js"
+      "!<rootDir>/src/config/**/*.js",
+      "!<rootDir>/src/serviceWorker.js"
     ],
+    "moduleNameMapper": {
+      "hocs/withAPI": "<rootDir>/jest/__mocks__/withAPI.js",
+      "jwt-decode": "<rootDir>/jest/__mocks__/jwt-decode.js"
+    },
     "coverageThreshold": {
       "global": {
         "branches": 100,
